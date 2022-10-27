@@ -1,15 +1,98 @@
 <template>
   <div class="head">
-    <h1>Hello</h1>
+    <div class="logo">
+      <img src="../assets/logo.svg" alt="logo">
+    </div>
+    <div class="icon">
+      <div class="mode">
+        <img src="../assets/icon-sun.svg" alt="sun">
+      </div>
+      <div class="pic">
+        <img src="../assets/image-avatar.jpg" alt="avatar">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-
-}
+  name: 'Header'
+} 
 </script>
 
 <style scoped>
-
+  .head{
+    position: relative;
+    background: #373b53;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+  }
+  .head .logo{
+    position: relative;
+    background: #5362d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 14px 14px 0;
+    color:#dfe3fa, #f9fafe, #888eb0,#F9FAFE,#7e88c3,
+     rgba(55, 59, 83, 0.06),rgba(72, 84, 159, 0.25),
+     rgba(12, 14, 22, .4),
+  }
+  .logo img{
+    z-index: 1;
+  }
+  .head .logo::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 59%;
+    background: #7e88c3;
+    border-radius: 14px 0 0 0 ;
+    bottom: 0;
+  }
+  .head .icon{
+    position: relative;
+    width: 140px;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+  .icon .mode{
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 80px;
+  }
+  .icon .pic{
+    position: relative;
+    width: 30px;
+    height: 30px;
+  }
+  .pic img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 70%;
+  }
+  @media screen and (max-width: 1000px) {
+    .head{
+      width: 100%;
+      height: 60px;
+      padding: 0 25px;
+      padding-left: 0;
+    }
+    .head .logo{
+      height: 100%;
+      width: 80px;
+    }
+    .icon .mode{
+      border-right: 1px solid #777;
+    }
+  }
 </style>

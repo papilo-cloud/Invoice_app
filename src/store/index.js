@@ -4,19 +4,31 @@ import data from "../datas/dass.json";
 export default createStore({
   state: {
         todos: [],
-        todo: [],
-
+        todo: [
+          { id: 1, text: '...', done: true },
+          { id: 2, text: '...', done: true },
+          { id: 3, text: '...', done: false },
+          { id: 4, text: '...', done: false },
+          { id: 7, text: '...', done: true }
+        ],
+        count: 1,
   },
   getters: {
   
     doneTodos (state) {
-      return state.todos
+      return state.todo.filter(odo => !odo.done)
+    },
+    doneTodosCount (state, getters) {
+      return getters.doneTodos.length
     },
     getTodoById: (state) => (id) => {
-      return state.todos.find(todo => todo.id === id)
+      return state.todo.find(todo => todo.id === id)
     }
   },
   mutations: {
+    increment(state){
+      state.count++
+    },
     ADD_NEW(state, payload){
       return state.todos = payload
     },

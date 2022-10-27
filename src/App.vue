@@ -1,36 +1,48 @@
 <template>
- <div>
-  <h1>Hello Wold</h1>
-  <!-- <p>{{doneTodos}}</p> -->
-  <ul>
-    <li v-for="done in dones" :key="done.id" @dblclick="dele(done.id)">{{done.clientName}} || {{done.id}}</li>
-    <!-- <li></li> -->
-  </ul>
+ <div class="app">
+    <Heade />
  </div>
 </template>
 
 <script>
-// import data from "./datas/dass.json";
+import { mapGetters } from 'vuex';
+import Heade from './components/Heade.vue';
+
 export default {
-  mounted () {
-    this.$store.dispatch('loadDaas')
-    console.log(this.$store.getters.doneTodos)
-    console.log(this.$store.getters.getTodoById(3080)) 
-},
-methods: {
-  dele(index) {
-    this.$store.dispatch('delOdo', index)
-    console.log(index)
-  }
-},
-computed: {
-  dones(){
-    return this.$store.getters.doneTodos
-  }
-}
+    mounted() {
+        this.$store.dispatch("loadDaas");
+        console.log(this.$store.getters.doneTodos);
+        console.log(this.$store.getters.doneTodosCount);
+        console.log(this.$store.state.count);
+        this.$store.commit("increment");
+    },
+    methods: {
+        dele(index) {
+            this.$store.dispatch("delOdo", index);
+            console.log(index);
+        }
+    },
+    computed: {
+        // dones(){
+        //   return this.$store.getters.doneTodos
+        // }
+        ...mapGetters({
+            dones: "doneTodos"
+        })
+    },
+    components: { Heade }
 }
 </script>
 
 <style>
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  body{
+    position: relative;
+    width: 100%;
+    background: #141625;
+  }
 </style>
