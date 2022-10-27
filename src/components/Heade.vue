@@ -25,7 +25,7 @@ export default {
     position: relative;
     background: #373b53;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;  
     align-items: center;
   }
   .head .logo{
@@ -34,7 +34,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0 14px 14px 0;
+    border-radius: 14px;
     color:#dfe3fa, #f9fafe, #888eb0,#F9FAFE,#7e88c3,
      rgba(55, 59, 83, 0.06),rgba(72, 84, 159, 0.25),
      rgba(12, 14, 22, .4),
@@ -90,9 +90,38 @@ export default {
     .head .logo{
       height: 100%;
       width: 80px;
+      border-radius: 14px;
     }
     .icon .mode{
       border-right: 1px solid #777;
     }
   }
+  @media screen and (min-width: 1000px) {
+    .head{
+      width: 80px;
+      height: 100vh;
+      flex-direction: column;
+      padding:0 0 20px;
+    }
+    .head .logo{
+      width: 100%;
+      height: 80px;
+    }
+    .head .icon{
+    height: 140px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .icon .mode{
+    width: 100%;
+    height: 80px;
+  }
+  .icon .mode{
+      border-bottom: 1px solid #777;
+    }
+  }
+
 </style>

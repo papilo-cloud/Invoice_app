@@ -1,12 +1,14 @@
 <template>
  <div class="app">
     <Heade />
+    <invoices />
  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import Heade from './components/Heade.vue';
+import Invoices from './components/Invoices.vue';
 
 export default {
     mounted() {
@@ -30,17 +32,18 @@ export default {
             dones: "doneTodos"
         })
     },
-    components: { Heade }
+    components: { Heade, Invoices }
 }
 </script>
 
 <style>
 *{
-  margin: 0;
+  margin: 0; 
   padding: 0;
   box-sizing: border-box;
 }
   body{
+    font-family: sans-serif;
     position: relative;
     width: 100%;
     background: #141625;
