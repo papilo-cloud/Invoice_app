@@ -15,14 +15,17 @@ export default createStore({
   },
   getters: {
   
-    doneTodos (state) {
-      return state.todo.filter(odo => !odo.done)
+    getTodos (state) {
+      return state.todos
     },
-    doneTodosCount (state, getters) {
-      return getters.doneTodos.length
+    getTodosCount (state, getters) {
+      return getters.getTodos.length
     },
     getTodoById: (state) => (id) => {
-      return state.todo.find(todo => todo.id === id)
+      return state.todos.find(todo => todo.id === id)
+    },
+    activeClass(state) {
+      return 
     }
   },
   mutations: {

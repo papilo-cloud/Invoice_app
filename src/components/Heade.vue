@@ -5,7 +5,9 @@
     </div>
     <div class="icon">
       <div class="mode">
-        <img src="../assets/icon-sun.svg" alt="sun">
+        <button>
+          <img src="../assets/icon-sun.svg" alt="sun">
+        </button>
       </div>
       <div class="pic">
         <img src="../assets/image-avatar.jpg" alt="avatar">
@@ -23,10 +25,15 @@ export default {
 <style scoped>
   .head{
     position: relative;
-    background: #373b53;
+    background: #1e2139;
     display: flex;
     justify-content: space-between;  
     align-items: center;
+  }
+  button{
+    background-color: inherit;
+    outline: none;
+    border: none;
   }
   .head .logo{
     position: relative;
@@ -34,7 +41,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 14px;
+    border-radius: 0 14px 14px 0;
     color:#dfe3fa, #f9fafe, #888eb0,#F9FAFE,#7e88c3,
      rgba(55, 59, 83, 0.06),rgba(72, 84, 159, 0.25),
      rgba(12, 14, 22, .4),
@@ -48,7 +55,7 @@ export default {
     width: 100%;
     height: 59%;
     background: #7e88c3;
-    border-radius: 14px 0 0 0 ;
+    border-radius: 14px 0 ;
     bottom: 0;
   }
   .head .icon{
@@ -90,7 +97,7 @@ export default {
     .head .logo{
       height: 100%;
       width: 80px;
-      border-radius: 14px;
+      z-index: 1;
     }
     .icon .mode{
       border-right: 1px solid #777;
