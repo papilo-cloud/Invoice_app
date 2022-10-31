@@ -1,18 +1,19 @@
 <template>
  <div class="app">
     <Heade />
-    <invoices />
+    <router-view></router-view>
  </div>
 </template>
 
 <script>
 import Heade from './components/Heade.vue';
-import Invoices from './components/Invoices.vue';
 
 export default {
+
     mounted() {
         this.$store.dispatch("loadDaas");
         console.log(this.$store.getters.getTodos);
+        // console.log(this.$store.getters.getTodoById("RT3080"));
         console.log(this.$store.getters.doneTodosCount);
         console.log(this.$store.state.count);
         this.$store.commit("increment");
@@ -24,7 +25,7 @@ export default {
         }
     },
    
-    components: { Heade, Invoices }
+    components: { Heade }
 }
 </script>
 

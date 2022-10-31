@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
+import Invoices from '../views/Invoices.vue';
+import Details from '../components/DetailedInvoice.vue'
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   // component: HomeView 
-  // },
+  {
+    path: '/',
+    name: 'home',
+    component: Invoices 
+  },
   // {
   //     path: '/bookmarked',
   //     name: 'Bookmarked',
@@ -16,7 +17,11 @@ const routes = [
   //     // component: () => import(/* webpackChunkName: "about" */ '../views/Bookmarked.vue'),
   //     // component: Bookmarked
   //   },
-   
+   {
+    path: '/:id', 
+    name: 'details',
+    component: Details
+   }
 ]
 
 const router = createRouter({

@@ -20,10 +20,11 @@
   </template>
   
   <script>
-import Invoice from './Invoice.vue'
+import Invoice from '../components/Invoice.vue'
 import { mapGetters } from 'vuex';
 
   export default {
+    name: 'invoices',
   components: { Invoice },
   computed: {
         dones(){
@@ -98,7 +99,7 @@ import { mapGetters } from 'vuex';
     }
     @media screen and (min-width:778px) {
       .inss{
-        width: 748px;
+        min-width: 748px;
         margin: 20px auto;
       }
        .head{
@@ -107,7 +108,7 @@ import { mapGetters } from 'vuex';
     }
     @media screen and (min-width:1000px) {
       .inss{
-        width: 800px;
+        width: 820px;
       }
     }
   </style> 

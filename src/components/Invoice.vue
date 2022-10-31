@@ -1,10 +1,13 @@
 <template>
   <div class="ins">
     <div class="bdy" v-for="invs in dones" :key="invs.id">
+      <router-link :to="{ name: 'details', params: { id: invs.id } }">
       <div class="pos">
         <p class="id">#{{invs.id}}</p> <span>Due {{invs.paymentDue}}</span> 
         <span>{{invs.clientName}}</span> <p class="total">${{invs.total}}</p>
-        <p class="p status"><span></span> {{invs.status}}</p>
+        <p class="p status" :class="{paid: invs.status === 'paid', pending: invs.status === 'pending', draft: invs.status === 'draft'}">
+          <span :class="{paid: invs.status === 'paid', pending: invs.status === 'pending', draft: invs.status === 'draft'}"></span> 
+          {{invs.status}}</p>
         <img src="../assets/icon-arrow-right.svg" alt="">
       </div>
       <div class="small">
@@ -13,9 +16,11 @@
         </div>
         <div class="sml2">
           <span>{{invs.clientName}}</span>
-          <p class="status paid"><span class="paid"></span> {{invs.status}}</p>
+          <p class="status" :class="{paid: invs.status === 'paid', pending: invs.status === 'pending', draft: invs.status === 'draft'}">
+            <span :class="{paid: invs.status === 'paid', pending: invs.status === 'pending', draft: invs.status === 'draft'}"></span> {{invs.status}}</p>
         </div>
       </div>
+    </router-link>
     </div>
   </div>
 </template>
@@ -35,7 +40,7 @@ export default {
 
   computed: {
     activeClass(){
-          return this.$store.getters.doneTodos
+          return this.$store.getters.getTodos
         },
         ...mapGetters({
             dones: "getTodos"
@@ -64,9 +69,29 @@ export default {
     top: 50%;
     /* left: 20px; */
   }
-  .bdy .status .paid, .bdy .paid {
-    background-color: rgba(255, 170, 0, 0.1);
+  .bdy .status .paid {
+    background-color: rgba(0, 255, 0, .3);
   }
+  .bdy .paid {
+    background-color: rgba(0, 220, 0, 0.1);
+    color: rgba(0, 255, 0, .3);
+  }
+  .bdy .status .pending{
+    background-color: rgba(255,120, 0, .3);
+  }
+  .bdy .pending{
+    background-color: rgba(225, 120, 0, 0.1);
+    color: rgba(255,170, 0, .3);
+  }
+  .bdy .status .draft{
+    background-color: #fff;
+    /* color: rgba(255,170, 0, .3); */
+  }
+  .bdy .draft{
+    background-color: rgba(0, 0, 0, 0.14);
+    /* color: rgba(255,170, 0, .3); */
+  }
+  
   
  .col {
   color: #141625, #1e2139,#252945,#dfe3fa,rgba(223, 227, 250, .06),
