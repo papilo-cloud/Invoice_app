@@ -56,8 +56,12 @@ export default {
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 7px;
-    background: #1e2139;
+    background: rgba(72, 84, 159, 0.15);
     /* background: #fff; */
+  }
+  .bdy a{
+    color: inherit;
+    text-decoration: none;
   }
   .bdy .status span{
     position: relative;
