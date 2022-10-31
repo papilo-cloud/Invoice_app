@@ -11,10 +11,10 @@
           <p class="status" :class="{paid: datas.status === 'paid', pending: datas.status === 'pending', draft: datas.status === 'draft'}">
             <span :class="{paid: datas.status === 'paid', pending: datas.status === 'pending', draft: datas.status === 'draft'}"></span> {{datas.status}}</p>
         </div>
-        <div>
-          <button>Edit</button>
-          <button>Delete</button>
-          <button>Mark as Paid</button>
+        <div class="bottom">
+          <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
+          <button class="del">Delete</button>
+          <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
         </div>
       </div>
       <div class="pend" v-else="totalLen">
@@ -23,7 +23,24 @@
             <span :class="{paid: datas.status === 'paid', pending: datas.status === 'pending', draft: datas.status === 'draft'}"></span> {{datas.status}}</p>
       </div>
     </div>
-      
+    <div class="bdy">
+      <div class="one">
+        <h3>
+          # {{datas.id}}
+        </h3>
+        <p>{{datas.description}}</p>
+      </div>
+      <div class="two">
+        <p>{{datas.senderAddress}}</p>
+        <!-- <p>{{datas.senderAddress.city}}</p>
+        <p>{{datas.senderAddress.postCode}}</p>
+        <p>{{datas.senderAddress.country}}</p> -->
+      </div>
+      <div class="three">Three</div>
+      <div class="four">Four</div>
+      <div class="five">Five</div>
+      <div class="six">Six</div>
+    </div>
   </div>
 </template>
 
@@ -114,7 +131,19 @@ export default {
     gap: 10px;
   }
   .edit button{
-    margin-left: 14px;
+    /* margin-left: 14px; */
+    padding: 14px 17px;
+    border-radius: 22px;
+  }
+  .edit .edt {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .edit .del{
+    background: rgba(249, 0, 0, 0.9);
+  }
+  .edit .mrk{
+    background: rgba(0, 0, 249, 0.9);
+
   }
   .pend p:nth-child(1){
     margin-right: 10px;
