@@ -44,7 +44,7 @@ import { mapGetters } from 'vuex';
             done: "getTodosCount"
     }),
   }
-}
+} 
   </script>
   
   <style scoped>
@@ -97,7 +97,7 @@ import { mapGetters } from 'vuex';
       background: white;
       border-radius: 50%;
     }
-    @media screen and (min-width:778px) {
+    @media screen and (min-width:768px) {
       .inss{
         min-width: 748px;
         margin: 20px auto;

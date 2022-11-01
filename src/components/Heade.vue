@@ -37,7 +37,7 @@ export default {
   }
   .head .logo{
     position: relative;
-    background: #5362d3;
+    background: rgba(100, 70, 220, 0.999);
     display: flex;
     justify-content: center;
     align-items: center;

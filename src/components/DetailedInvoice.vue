@@ -17,7 +17,7 @@
           <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
         </div>
       </div>
-      <div class="pend" v-else="totalLen">
+      <div class="pend" v-if="!totalLen">
           <p>status</p>
           <p class="status" :class="{paid: datas.status === 'paid', pending: datas.status === 'pending', draft: datas.status === 'draft'}">
             <span :class="{paid: datas.status === 'paid', pending: datas.status === 'pending', draft: datas.status === 'draft'}"></span> {{datas.status}}</p>
@@ -31,15 +31,44 @@
         <p>{{datas.description}}</p>
       </div>
       <div class="two">
-        <p>{{datas.senderAddress}}</p>
-        <!-- <p>{{datas.senderAddress.city}}</p>
-        <p>{{datas.senderAddress.postCode}}</p>
-        <p>{{datas.senderAddress.country}}</p> -->
+        <p>{{senderAddress.street}}</p>
+        <p>{{senderAddress.city}}</p>
+        <p>{{senderAddress.postCode}}</p>
+        <p>{{senderAddress.country}}</p>
       </div>
-      <div class="three">Three</div>
-      <div class="four">Four</div>
-      <div class="five">Five</div>
-      <div class="six">Six</div>
+      <div class="three">
+        <p>Invoice Date</p>
+        <h3>{{datas.createdAt}}</h3>
+      </div>
+      <div class="four">
+        <p>Bill To</p>
+        <h3>{{datas.clientName}}</h3>
+        <p>{{clientAddress.street}}</p>
+        <p>{{clientAddress.city}}</p>
+        <p>{{clientAddress.postCode}}</p>
+        <p>{{clientAddress.country}}</p>
+      </div>
+      <div class="five">
+        <p>sent to</p>
+        <h3>{{datas.clientEmail}}</h3>
+      </div>
+      <div class="six">
+        <p>Payment Due</p>
+        <h3>{{datas.paymentDue}}</h3>
+      </div>
+      <div class="calc">
+        <div class="banner" v-for="(item, i) in datas.items" :key="i">
+          <div>
+            <h5>{{item.name}}</h5>
+            <p>{{item.quantity}} x ${{item.price}}</p>
+          </div>
+          <h3>${{item.total}}</h3>
+        </div>
+        <div class="total">
+          <p>grand total</p>
+          <h3>${{datas.total}}</h3>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -49,16 +78,20 @@ export default {
   data() {
     return {
       datas: [],
+      clientAddress: {},
+      senderAddress: {},
       id: this.$route.params.id
     }
   },
   mounted() {
      const x = this.$store.getters.getTodoById(this.id)
      this.datas = this.$store.getters.getTodoById(this.id)
-     const {id,createdAt} =  this.datas
-     console.log(this.datas.status)
+     this.clientAddress = this.datas.clientAddress
+     this.senderAddress = this.datas.senderAddress
 
      console.log(this.datas)
+
+     console.log(this.clientAddress)
   },
   methods: {
     backBtn() {
@@ -111,6 +144,7 @@ export default {
     padding: 24px;
     background:rgba(72, 84, 159, 0.15);
     border-radius: 10px;
+    margin-bottom: 20px;
   }
   .pend{
     display: flex;
@@ -139,10 +173,10 @@ export default {
     background: rgba(0, 0, 0, 0.2);
   }
   .edit .del{
-    background: rgba(249, 0, 0, 0.9);
+    background: rgba(240, 100, 110, 0.9);
   }
   .edit .mrk{
-    background: rgba(0, 0, 249, 0.9);
+    background: rgba(100, 70, 220, 0.999);
 
   }
   .pend p:nth-child(1){
@@ -167,18 +201,18 @@ export default {
     /* left: 20px; */
   }
    .status .paid {
-    background-color: rgba(0, 255, 0, .3);
+    background-color: rgba(0, 255, 0, .7);
   }
    .paid {
     background-color: rgba(0, 220, 0, 0.1);
-    color: rgba(0, 255, 0, .3);
+    color: rgba(0, 255, 0, .7);
   }
    .status .pending{
-    background-color: rgba(255,120, 0, .3);
+    background: rgba(250,180, 0, .8);
   }
    .pending{
     background-color: rgba(225, 120, 0, 0.1);
-    color: rgba(255,170, 0, .3);
+    color: rgba(250,180, 0, .8);
   }
    .status .draft{
     background-color: #fff;
@@ -188,5 +222,97 @@ export default {
     background-color: rgba(0, 0, 0, 0.14);
     /* color: rgba(255,170, 0, .3); */
   }
+
+  .bdy{
+    position: relative;
+    margin: 0;
+    padding: 2em;
+    background:rgba(72, 84, 159, 0.15);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    grid-auto-rows: minmax(40px, auto);
+  }
+  .bdy p{
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .bdy h3{
+    margin: 10px 0;
+  }
+  .one {
+  grid-column: 1;
+  grid-row: 1;
+  background: rgb(170, 20, 50);
+
+}
+.two {
+  grid-column: 1;
+  grid-row: 2 ;
+  background: rgb(0, 0, 50);
+
+}
+.three {
+  grid-column: 1;
+  grid-row: 3 ;
+  background: rgb(7, 201, 20);
+
+}
+.four {
+  grid-column: 2/3;
+  grid-row: 3/ 5;
+  background: rgb(7, 01, 250);
+
+}
+.five {
+  grid-column: 1/3;
+  grid-row: 5;
+  background: rgb(7, 201, 250);
+}
+.six {
+  grid-column: 1;
+  grid-row: 4;
+  background: rgb(84, 11, 110);
+}
+.calc{
+  grid-column: 1/3;
+  grid-row: 6;
+  background: #252945;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.banner{
+  padding: 20px;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total{
+  position: relative;
+  margin: 0;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  background: #0C0e16;
+}
+  @media screen and (min-width:768px) {
+      .details{
+        width: 748px;
+        margin: 20px auto;
+      }
+      .bdy{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media screen and (min-width:1000px) {
+      .details{
+        width: 820px;
+      }
+    }
   
 </style>

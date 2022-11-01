@@ -74,18 +74,18 @@ export default {
     /* left: 20px; */
   }
   .bdy .status .paid {
-    background-color: rgba(0, 255, 0, .3);
+    background-color: rgba(0, 255, 0, .7);
   }
   .bdy .paid {
     background-color: rgba(0, 220, 0, 0.1);
-    color: rgba(0, 255, 0, .3);
+    color: rgba(0, 255, 0, .7);
   }
   .bdy .status .pending{
-    background-color: rgba(255,120, 0, .3);
+    background-color: rgba(250,180, 0, .8);
   }
   .bdy .pending{
     background-color: rgba(225, 120, 0, 0.1);
-    color: rgba(255,170, 0, .3);
+    color: rgba(250,180, 0, .8);
   }
   .bdy .status .draft{
     background-color: #fff;
@@ -103,7 +103,7 @@ export default {
   rgba(72, 84, 159, 0.25),rgba(12, 14, 22, .4),#363b53,
   rgba(55, 59, 83, 0.06)
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 768px) {
     .small{
       display: flex;
       justify-content: space-between;
@@ -144,7 +144,7 @@ export default {
       display: none;
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 768px) {
     .small{
       display: none;
     }
