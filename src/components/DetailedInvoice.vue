@@ -13,7 +13,7 @@
         </div>
         <div class="bottom">
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
-          <button class="del">Delete</button>
+          <button class="del" @click="deleteTodo(datas.id)">Delete</button>
           <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
         </div>
       </div>
@@ -74,7 +74,7 @@
       <div class="edit edit1">
         <div>
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
-          <button class="del">Delete</button>
+          <button class="del" @click="deleteTodo(datas.id)">Delete</button>
           <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
         </div>
       </div>
@@ -105,7 +105,11 @@ export default {
   methods: {
     backBtn() {
       this.$router.go(-1)
-    }
+    },
+    deleteTodo(id) {
+            this.$store.dispatch("deleteTodo", id);
+            this.$router.go(-1)
+        }
   },
   computed: {
         dones(){

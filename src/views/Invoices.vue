@@ -1,5 +1,6 @@
 <template>
     <div class="inss">
+      <new-invoice class="new" v-if="show"/>
       <div class="head">
         <div class="con">
           <h3>Invoices</h3>
@@ -8,8 +9,20 @@
         <div class="bun">
           <div>
             <button class="bun1">{{status}} <img src="../assets/icon-arrow-down.svg" alt=""></button>
+            <form class="asses">
+              <label for="all">
+                <input type="radio" name="bunn" v-model="pick" value="all"> all
+              </label>
+              <div v-for="(shows, x) in showFilters" :key="x">
+              <label :for="shows" @change="filterTodo(shows)">
+                <input type="radio" name="bunn" v-model="pick" :value="shows">{{shows}}
+              </label>
+              
+            </div>
+            {{pick}}
+            </form>
           </div>
-          <button class="bun2">
+          <button class="bun2" @click="showForm">
             <span><img src="../assets/icon-plus.svg" alt="plus"></span>{{dones}}</button>
         </div>
       </div>
@@ -22,11 +35,24 @@
   <script>
 import Invoice from '../components/Invoice.vue'
 import { mapGetters } from 'vuex';
+import NewInvoice from '../components/NewInvoice.vue';
+import { onBeforeMount } from 'vue';
 
   export default {
     name: 'invoices',
-  components: { Invoice },
-  computed: {
+    data() {
+      return{
+        show: false,
+        pick: 'all'
+      }
+    },
+    components: {
+      Invoice,
+      NewInvoice,
+      onBeforeMount
+    },
+  
+    computed: {
         dones(){
           // return this.$store.getters.doneTodos
           const x = window.innerWidth >= 700 ?  ' New Invoices':' New';
@@ -40,9 +66,25 @@ import { mapGetters } from 'vuex';
           const x = window.innerWidth >= 700 ?  ` filter by status`:` filter`;
           return x
         },
+        showFilters(){
+          const shw =  this.$store.getters.getTodos
+          const ans = [...new Set(shw.map(x => x.status)) ]
+          return ans
+          // console.log(ans)
+        },
         ...mapGetters({
             done: "getTodosCount"
     }),
+  },
+  methods: {
+    showForm() {
+      this.show = !this.show
+    },
+    filterTodo(index) {
+            this.$store.dispatch("filterTodo", index);
+            // this.$store.getters.getTodoById("RT3080")
+            console.log(index);
+        }
   }
 } 
   </script>

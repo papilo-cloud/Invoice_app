@@ -18,6 +18,9 @@ export default createStore({
     getTodos (state) {
       return state.todos
     },
+    getFilters (state) {
+      return state.todos
+    },
     getTodosCount (state, getters) {
       return getters.getTodos.length
     },
@@ -35,17 +38,26 @@ export default createStore({
     ADD_NEW(state, payload){
       return state.todos = payload
     },
-    DELE_ODO(state, payload) {
+    DELE_TODO(state, payload) {
       const index = state.todos.findIndex(dos => dos.id === payload)
       return state.todos.splice(index, 1)
+    },
+    FILTE_TODO(state, payload){
+      // return state.todos.filter(dos => dos.status === payload)
+      //  state.todos.splice(index, 1)
+      console.log(typeof(payload))
     }
   }, 
   actions: {
     loadDaas(context) {
       return context.commit('ADD_NEW',data)
     },
-    delOdo(context, payload) {
-      return context.commit('DELE_ODO', payload)
+    filterTodo(context,payload) {
+      return context.commit('FILTE_TODO',payload)
+      // console.log(payload)
+    },
+    deleteTodo(context, payload) {
+      return context.commit('DELE_TODO', payload)
     }
   },
   modules: {
