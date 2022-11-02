@@ -12,16 +12,19 @@
             <div class="asses" v-if="filter">
               <label for="all">
                 <input type="radio" name="bunn" v-model="pick" value="all" id="all"> all
+                <span></span>
               </label>
               <div v-for="(shows, x) in showFilters" :key="x">
               <label :for="x">
                 <input type="radio" name="bunn" v-model="pick" :value="shows" :id="x"> {{shows}}
+                <span></span>
               </label>
             </div>
             </div>
           </div>
           <button class="bun2" @click="showForm">
-            <span><img src="../assets/icon-plus.svg" alt="plus"></span>{{dones}}</button>
+            <span><img src="../assets/icon-plus.svg" alt="plus"></span>{{dones}}
+          </button>
         </div>
       </div>
       <div class="bdy">
@@ -82,6 +85,7 @@ import { onBeforeMount } from 'vue';
   },
   methods: {
     showForm() {
+      this.filter = false;
       this.show = !this.show
     },
     showFilter() {
@@ -123,6 +127,10 @@ import { onBeforeMount } from 'vue';
       outline: none;
       cursor: pointer;
     }
+    .bun{
+      position: relative;
+      transition: .4s;
+    }
     .bun .bun1{
       background: transparent;
       color: white;
@@ -157,18 +165,48 @@ import { onBeforeMount } from 'vue';
     .asses{
       background: #1e2139;
       position: absolute;
-      padding: 20px;
+      padding: 20px 10px;
       left: -20px;
       top: 48px;
+      transition: .4s;
       z-index: 1;
       border-radius: 8px;
-      box-shadow: 3px 3px 12px rgba(249, 249, 249, 0.1);
+      box-shadow: inset 3px 3px 2px rgba(249, 249, 249, 0.1), inset -3px -3px 2px rgba(249, 249, 249, 0.1) ;
+      
     }
     .asses label{
+      position: relative;
       cursor: pointer;
-    }
-    .asses input{
+      padding-left: 40px;
+      display: block;
       margin-bottom: 10px;
+    }
+    label input{
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+      /* margin-bottom: 10px; */
+    }
+    label span{
+      width: 20px;
+      height: 20px;
+      border-radius: 10%;
+      /* display: inline-block; */
+      position: absolute;
+      left: 0;
+      top: 0;
+      border:1px solid #5362d3;
+    }
+    label input:checked ~ span::after{
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      left: 7px;
+      border-bottom:1px solid white;
+      border-right: 1px solid white;
+      transform: rotate(40deg);
     }
     @media screen and (min-width:768px) {
       .inss{
@@ -177,6 +215,9 @@ import { onBeforeMount } from 'vue';
       }
        .head{
         margin-bottom: 3em;
+      }
+      .asses{
+        left: 0;
       }
     }
     @media screen and (min-width:1000px) {

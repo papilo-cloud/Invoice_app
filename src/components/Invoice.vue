@@ -65,7 +65,10 @@ export default {
     background: rgba(72, 84, 159, 0.15);
     /* background: #fff;
     color: #0C0e16; */
-    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.5);
+  }
+  .bdy:hover{
+    box-shadow:inset 1px 1px 3px rgba(250, 250, 250, 0.3);
   }
   .bdy a{
     color: inherit;

@@ -14,7 +14,7 @@
         <div class="bottom">
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
           <button class="del" @click="deleteTodo(datas.id)">Delete</button>
-          <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
+          <button class="mrk" v-if="datas.status !== 'paid'" @click="toggleTodo(datas.id)">Mark as Paid</button>
         </div>
       </div>
       <div class="pend" v-if="!totalLen">
@@ -64,6 +64,22 @@
           </div>
           <h3>${{item.total}}</h3>
         </div>
+        <div class="banner1" >
+          <div class="bann">
+            <p class="name1">Item Name</p>
+            <p class="name2">QTY</p>
+            <p class="name3">Price</p>
+            <p class="name4">Total</p>
+            <div class="item">
+              <div v-for="(item, i) in datas.items" :key="i" class="item1">
+                <h5 class="ones">{{item.name}}</h5>
+                <h5 class="ones1">{{item.quantity}}</h5>
+                <h3>$ {{item.price}}</h3>
+                <h3>$ {{item.total}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="total">
           <p>grand total</p>
           <h3>${{datas.total}}</h3>
@@ -75,7 +91,7 @@
         <div>
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
           <button class="del" @click="deleteTodo(datas.id)">Delete</button>
-          <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
+          <button class="mrk" v-if="datas.status !== 'paid'" @click="toggleTodo(datas.id)">Mark as Paid</button>
         </div>
       </div>
     </div>
@@ -109,7 +125,10 @@ export default {
     deleteTodo(id) {
             this.$store.dispatch("deleteTodo", id);
             this.$router.go(-1)
-        }
+    },
+    toggleTodo(id) {
+      this.$store.dispatch("toggleTodo", id);
+    }
   },
   computed: {
         dones(){
@@ -291,12 +310,9 @@ export default {
   border-radius: 8px;
   overflow: hidden;
 }
-.banner{
-  padding: 20px;
-  padding-bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.banner1, .banner{
+  display: none;
 }
 .total{
   position: relative;
@@ -328,6 +344,13 @@ export default {
   .edit .bottom{
     display: none;
   }
+  .banner{
+  padding: 20px;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 }
   @media screen and (min-width:768px) {
       .details{
@@ -374,6 +397,50 @@ export default {
       margin-top: 0;
       gap:0;
     }
+    .banner1{
+      display: block;
+      padding: 20px;
+    }
+    .banner1 .bann{
+      display: grid;
+      grid-template-columns: 2fr 40px 1fr 1fr;
+      gap: 20px;
+      grid-auto-rows: minmax(40px, auto);
+      width: 100%;
+      /* background: #fff; */
+    }
+    .banner1 .bann p:not(.name1){
+      text-align: right;
+    }
+    .name1{
+      grid-column: 1;
+      grid-row: 1 ;
+    }
+    .item{
+      grid-column: 1/5;
+      /* grid-row: 2/4; */
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+    }
+    .item .item1{
+      display: grid;
+      grid-template-columns: 2fr 40px 1fr 1fr;
+      grid-auto-rows: minmax(40px, auto);
+      gap: 20px;
+    }
+    
+    .item .item1 h3 {
+      text-align: right;
+      margin: 0;
+      padding: 0;
+      /* align-items: end; */
+    }
+    .item .item1 .ones1{
+      text-align: center;
+    }
+
     }
     @media screen and (min-width:1000px) {
       .details{

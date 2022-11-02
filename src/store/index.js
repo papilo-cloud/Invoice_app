@@ -40,20 +40,19 @@ export default createStore({
     },
     DELE_TODO(state, payload) {
       const index = state.todos.findIndex(dos => dos.id === payload)
-      return state.todos.splice(index, 1)
+      state.todos.splice(index, 1)
     },
-    FILTE_TODO(state, payload){ 
-      // return state.todos.filter(dos => dos.status === payload)
-      //  state.todos.splice(index, 1)
-      console.log(typeof(payload))
+    TOGGLE_TODO(state, payload){ 
+      const index = state.todos.find(dos => dos.id === payload)
+      index.status = 'paid'
     }
   }, 
   actions: {
     loadDaas(context) {
       return context.commit('ADD_NEW',data)
     },
-    filterTodo(context,payload) {
-      return context.commit('FILTE_TODO',payload)
+    toggleTodo(context,payload) {
+      return context.commit('TOGGLE_TODO',payload)
       // console.log(payload)
     },
     deleteTodo(context, payload) {
