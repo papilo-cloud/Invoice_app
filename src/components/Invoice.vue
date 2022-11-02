@@ -54,10 +54,12 @@ export default {
     position: relative;
     margin: 0;
     padding: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 7px;
     background: rgba(72, 84, 159, 0.15);
-    /* background: #fff; */
+    /* background: #fff;
+    color: #0C0e16; */
+    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.25);
   }
   .bdy a{
     color: inherit;

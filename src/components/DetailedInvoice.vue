@@ -70,6 +70,15 @@
         </div>
       </div>
     </div>
+    <div class="head1">
+      <div class="edit edit1">
+        <div>
+          <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
+          <button class="del">Delete</button>
+          <button class="mrk" v-if="datas.status !== 'paid'">Mark as Paid</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -138,7 +147,7 @@ export default {
   .btn img{
     margin-right: 10px;
   }
-  .head{
+  .head, .head1{
     position: relative;
     width: 100%;
     padding: 24px;
@@ -146,13 +155,16 @@ export default {
     border-radius: 10px;
     margin-bottom: 20px;
   }
+  .head1{
+    display: none;
+  }
   .pend{
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .edit{
+  .edit, .edit1{
     position: relative;
     display: flex;
     align-items: center;
@@ -226,6 +238,7 @@ export default {
   .bdy{
     position: relative;
     margin: 0;
+    margin-bottom: 20px;
     padding: 2em;
     background:rgba(72, 84, 159, 0.15);
     border-radius: 10px;
@@ -246,36 +259,26 @@ export default {
   .one {
   grid-column: 1;
   grid-row: 1;
-  background: rgb(170, 20, 50);
-
 }
 .two {
   grid-column: 1;
   grid-row: 2 ;
-  background: rgb(0, 0, 50);
-
 }
 .three {
   grid-column: 1;
   grid-row: 3 ;
-  background: rgb(7, 201, 20);
-
 }
 .four {
   grid-column: 2/3;
   grid-row: 3/ 5;
-  background: rgb(7, 01, 250);
-
 }
 .five {
   grid-column: 1/3;
   grid-row: 5;
-  background: rgb(7, 201, 250);
 }
 .six {
   grid-column: 1;
   grid-row: 4;
-  background: rgb(84, 11, 110);
 }
 .calc{
   grid-column: 1/3;
@@ -300,14 +303,73 @@ export default {
   align-items: center;
   background: #0C0e16;
 }
+.total h3{
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width:768px) {
+  .head1{
+    display: flex;
+  }
+  .edit1{
+    position: relative;
+    width: 100%;
+  }
+   .edit1 div {
+    width: 100%;
+    position: relative;
+    right: 0;
+    justify-content: flex-end;
+  }
+  .edit .bottom{
+    display: none;
+  }
+}
   @media screen and (min-width:768px) {
       .details{
         width: 748px;
         margin: 20px auto;
       }
       .bdy{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap:20px;
+        
       }
+      .one {
+      grid-column: 1/3;
+      grid-row: 1;
+
+    }
+    .two {
+      grid-column: 4;
+      grid-row: 1 ;
+      text-align: right;
+    }
+    .three {
+      grid-column: 1;
+      grid-row: 2 ;
+    }
+    .four {
+      grid-column: 2/3;
+      grid-row: 2/ 4;
+    }
+    .five {
+      grid-column: 3/5;
+      grid-row: 2;
+    }
+    .six {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .calc{
+      grid-column: 1/5;
+      grid-row: 5;
+      background: #252945;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 0;
+      gap:0;
+    }
     }
     @media screen and (min-width:1000px) {
       .details{
