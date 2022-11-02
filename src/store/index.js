@@ -42,7 +42,7 @@ export default createStore({
       const index = state.todos.findIndex(dos => dos.id === payload)
       return state.todos.splice(index, 1)
     },
-    FILTE_TODO(state, payload){
+    FILTE_TODO(state, payload){ 
       // return state.todos.filter(dos => dos.status === payload)
       //  state.todos.splice(index, 1)
       console.log(typeof(payload))

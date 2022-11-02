@@ -26,9 +26,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 
 export default {
+  props: {
+    pick: String
+  },
   data() {
   return {
     classObject: {
@@ -39,13 +42,16 @@ export default {
 },
 
   computed: {
-    activeClass(){
-          return this.$store.getters.getTodos
-        },
-        ...mapGetters({
-            dones: "getTodos"
-        })
+    dones(){
+      if(this.pick === 'all'){
+        return this.$store.getters.getTodos
+      }
+        return this.$store.getters.getTodos.filter(x => x.status === this.pick)
     },
+        // ...mapGetters({
+        //     dones: "getTodos"
+        // })
+  },
 }
 </script>
 
