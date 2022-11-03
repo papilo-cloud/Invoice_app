@@ -52,6 +52,9 @@ export default {
         //     dones: "getTodos"
         // })
   },
+  mounted() {
+
+  },
 }
 </script>
 

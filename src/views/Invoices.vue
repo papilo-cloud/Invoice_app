@@ -78,11 +78,6 @@ import { onBeforeMount } from 'vue';
             done: "getTodosCount"
     }),
   },
-  mounted() {
-           console.log(this.$store.getters.getTodos.filter(x => x.status === 'paid'))
-    this.done
-    console.log(this.done)
-  },
   methods: {
     showForm() {
       this.filter = false;
@@ -91,7 +86,6 @@ import { onBeforeMount } from 'vue';
     showFilter() {
       this.filter = !this.filter;
       const x = document.querySelector('.ims')
-      console.log(x.getAttribute)
       x.classList.toggle('imss')
     }
   }

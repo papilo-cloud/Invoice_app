@@ -30,16 +30,19 @@ export default {
 </script>
 
 <style>
-*{
-  margin: 0; 
-  padding: 0;
-  box-sizing: border-box;
-}
+  *{
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+  }
   body{
     font-family:'Assistant', sans-serif;
     position: relative;
     width: 100%;
     background: #141625;
+  }
+  .overflow {
+    overflow: hidden;
   }
   .app{
     position: relative;

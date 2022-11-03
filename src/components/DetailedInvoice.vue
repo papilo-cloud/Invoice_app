@@ -1,5 +1,15 @@
 <template>
+  <div class="main-details">
+    <div class="dell">
+      <h3>Confirm Deletion</h3>
+      <p>Are you sure you want to Delete invoice No. <span>{{datas.id}}</span>? This action cannot be undone.</p>
+      <div>
+        <button class="edt" @click="toggleDelete">Cancel</button>
+        <button class="del" @click="deleteTodo(datas.id)">Confirm</button>
+      </div>
+    </div>
   <div class="details">
+   
     <div class="btn">
       <button @click="backBtn"><img src="../assets/icon-arrow-left.svg" alt=""> Go back</button>
     </div>
@@ -13,7 +23,7 @@
         </div>
         <div class="bottom">
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
-          <button class="del" @click="deleteTodo(datas.id)">Delete</button>
+          <button class="del" @click="toggleDelete">Delete</button>
           <button class="mrk" v-if="datas.status !== 'paid'" @click="toggleTodo(datas.id)">Mark as Paid</button>
         </div>
       </div>
@@ -81,8 +91,8 @@
           </div>
         </div>
         <div class="total">
-          <p>grand total</p>
-          <h3>${{datas.total}}</h3>
+          <p>grand Total</p>
+          <h1>$ {{datas.total}}</h1>
         </div>
       </div>
     </div>
@@ -90,11 +100,12 @@
       <div class="edit edit1">
         <div>
           <button class="edt" v-if="datas.status !== 'paid'">Edit</button>
-          <button class="del" @click="deleteTodo(datas.id)">Delete</button>
+          <button class="del" @click="toggleDelete">Delete</button>
           <button class="mrk" v-if="datas.status !== 'paid'" @click="toggleTodo(datas.id)">Mark as Paid</button>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -124,7 +135,13 @@ export default {
     },
     deleteTodo(id) {
             this.$store.dispatch("deleteTodo", id);
-            this.$router.go(-1)
+            this.$router.push('/')
+    },
+    toggleDelete() {
+      // this.filter = !this.filter;
+      const x = document.querySelector('.dell')
+      x.classList.toggle('anim')
+      document.body.classList.toggle('overflow')
     },
     toggleTodo(id) {
       this.$store.dispatch("toggleTodo", id);
@@ -149,12 +166,51 @@ export default {
 </script> 
 
 <style scoped>
-  .details{
+  .main-details{
     position: relative;
     width: 100%;
     margin: 0;
     padding: 40px 20px 20px;
     color: #fff;
+  }
+  .dell{
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%);
+    width: 80%;
+    padding: 22px 12px;
+    background: #252945;  
+    z-index: -1;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: .3s;
+    box-shadow: 3px 3px 22px #101010 ;
+  }
+   .anim{
+    top:30%;
+    opacity: 1;
+    z-index: 1000;
+  }
+  
+  .overflow .details{
+    opacity: .3;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .dell h3{
+    margin-bottom: 4px;
+  }
+  .dell span{
+    color: rgba(100, 70, 220, 0.999);
+  }
+  .dell div{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 10px;
   }
   .btn {
     position: relative;
@@ -193,24 +249,24 @@ export default {
     align-items: center;
     justify-content: space-between;
   }
-  .edit div{
+  .edit div, .dell div{
     display: flex;
     align-items: center;
     /* justify-content: space-between; */
     gap: 10px;
   }
-  .edit button{
+  .edit button, .dell button{
     /* margin-left: 14px; */
     padding: 14px 17px;
     border-radius: 22px;
   }
-  .edit .edt {
+   .edt {
     background: rgba(0, 0, 0, 0.2);
   }
-  .edit .del{
+   .del{
     background: rgba(240, 100, 110, 0.9);
   }
-  .edit .mrk{
+   .mrk{
     background: rgba(100, 70, 220, 0.999);
 
   }
@@ -233,7 +289,6 @@ export default {
     background: #0C0e16;
     border-radius: 50%;
     top: 50%;
-    /* left: 20px; */
   }
    .status .paid {
     background-color: rgba(0, 255, 0, .7);
@@ -341,6 +396,14 @@ export default {
     right: 0;
     justify-content: flex-end;
   }
+  .dell{
+    /* transform: translateY(50%); */
+
+  }
+  .anim{
+    top:50%;
+    /* transform: translate(-50%, -50%); */
+  }
   .edit .bottom{
     display: none;
   }
@@ -353,7 +416,7 @@ export default {
 }
 }
   @media screen and (min-width:768px) {
-      .details{
+      .main-details{
         width: 748px;
         margin: 20px auto;
       }
@@ -362,6 +425,7 @@ export default {
         gap:20px;
         
       }
+      
       .one {
       grid-column: 1/3;
       grid-row: 1;
@@ -443,7 +507,7 @@ export default {
 
     }
     @media screen and (min-width:1000px) {
-      .details{
+      .main-details{
         width: 820px;
       }
     }
