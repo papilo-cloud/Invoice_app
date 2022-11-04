@@ -33,6 +33,11 @@ export default {
   props: {
     pick: String
   },
+  mounted() {
+    const store = useStore()
+      this.todos = store.getters.getTodos
+      console.log(this.todos)
+  },
   data() {
   return { 
     todos: []
@@ -51,12 +56,10 @@ export default {
         //     dones: "getTodos"
         // })
   },
-  mounted() {
-    const store = useStore()
-      this.todos = store.getters.getTodos
-      console.log(this.todos)
-  },
+ 
 }
+
+
 </script>
 
 <style scoped>

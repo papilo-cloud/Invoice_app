@@ -3,22 +3,13 @@ import data from "../datas/dass.json";
 
 export default createStore({
   state: {
-        todos: [],
-        todo: [
-          { id: 1, text: '...', done: true },
-          { id: 2, text: '...', done: true },
-          { id: 3, text: '...', done: false },
-          { id: 4, text: '...', done: false },
-          { id: 7, text: '...', done: true }
-        ],
-        count: 1,
+        todos: []
   },
   getters: {
-    // todos (state) {
-    //   return state.todo;
-    // },
+   
     getTodos (state) {
       return state.todos
+      console.log(state.todos)
     },
     getFilters (state) {
       return state.todos
@@ -41,9 +32,12 @@ export default createStore({
         }
 			}
 		},
-    ADD_NEW(state, payload){
-      return state.todos = payload
-    },
+    // ADD_NEW(state, payload){
+    //   return state.todos = payload
+    // },
+    // loadDaas(state) {
+    //   return state.todos = data
+    // },
     DELE_TODO(state, payload) {
       const index = state.todos.findIndex(dos => dos.id === payload)
       state.todos.splice(index, 1)
@@ -55,9 +49,7 @@ export default createStore({
     },
   }, 
   actions: {
-    loadDaas(context) {
-      return context.commit('ADD_NEW',data)
-    },
+    
     toggleTodo(context,payload) {
       return context.commit('TOGGLE_TODO',payload)
     },

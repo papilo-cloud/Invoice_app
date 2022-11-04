@@ -99,7 +99,7 @@
   }
   </script>
   
-  <style scoped>
+  <style scoped> 
     .new{
       position: fixed;
       left: 0;
@@ -202,13 +202,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 9px;
+      display: flex;
+    }
+    .sumbit > div{
+      display: flex;
+      gap: 4px;
     }
     .sumbit button{
       outline: none;
       border: none;
       padding: 14px;
       border-radius: 24px;
+      font-size: 9px;
     }
     @media screen and (min-width: 768px) {
       .new{
@@ -217,6 +222,9 @@
       form >div:not(.sumbit){
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: minmax(40px, auto);
+    }
+    .sumbit button{
+      font-size: 17px;
     }
     .label .nm1{
       grid-column: 1/4;

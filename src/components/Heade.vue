@@ -24,11 +24,14 @@ export default {
 
 <style scoped>
   .head{
-    position: relative;
+    position: fixed;
+    top: 0;
     background: #1e2139;
     display: flex;
     justify-content: space-between;  
     align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(20);
   } 
   button{
     background-color: inherit;
@@ -48,7 +51,7 @@ export default {
   }
   .logo img{
     z-index: 1;
-  }
+  } 
   .head .logo::after{
     position: absolute;
     content: '';
@@ -90,7 +93,7 @@ export default {
   @media screen and (max-width: 1000px) {
     .head{
       width: 100%;
-      height: 60px;
+      height: 70px;
       padding: 0 25px;
       padding-left: 0;
     }
@@ -109,6 +112,7 @@ export default {
       height: 100vh;
       flex-direction: column;
       padding:0 0 20px;
+      
     }
     .head .logo{
       width: 100%;

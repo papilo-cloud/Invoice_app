@@ -37,7 +37,6 @@
 import Invoice from '../components/Invoice.vue'
 import { mapGetters } from 'vuex';
 import NewInvoice from '../components/NewInvoice.vue';
-import { onBeforeMount } from 'vue';
 
   export default {
     name: 'invoices',
@@ -51,7 +50,6 @@ import { onBeforeMount } from 'vue';
     components: {
       Invoice,
       NewInvoice,
-      onBeforeMount
     },
   
     computed: {
@@ -96,7 +94,7 @@ import { onBeforeMount } from 'vue';
     .inss{
       position: relative;
       width: 100%;
-      margin: 0;
+      margin: 4.9em 0 0;
       color: white;
       padding: 20px;
     }
@@ -217,6 +215,7 @@ import { onBeforeMount } from 'vue';
     @media screen and (min-width:1000px) {
       .inss{
         width: 820px;
+        padding-left: 4.9em;
       }
     }
   </style> 

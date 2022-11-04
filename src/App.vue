@@ -12,25 +12,22 @@ import Heade from './components/Heade.vue';
 export default {
 
     mounted() {
-        this.$store.dispatch("loadDaas");
+        // this.$store.commit("loadDaas");
         // console.log(this.$store.getters.getTodos);
         // console.log(this.$store.state.count);
         // this.$store.commit("increment");
+      // const store = useStore()
+      //   this.todos = store.getters.todos
+        // console.log(this.todos)
       const store = useStore()
-        this.todos = store.getters.todos
-        console.log(this.todos)
-
-        // this.dele()
-    },
-    data() {
-      return {
-            todos: []
-        }
+		  store.commit('loadStore');
+        // this.dele() 
     },
     beforeCreate() {
       const store = useStore()
 		  store.commit('loadStore');
 	  },
+    
     methods: {
       delDone(id) {
         this.$store.dispatch("toggleTodos", id);
@@ -80,7 +77,7 @@ export default {
   }
   @media screen and (min-width: 1000px) {
     .app{
-      grid-template-columns: auto 1fr; 
+      grid-template-columns: 1fr; 
     }
   }
 </style>
