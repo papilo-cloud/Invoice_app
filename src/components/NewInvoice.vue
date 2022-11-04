@@ -81,12 +81,13 @@
             <span>Total</span>
             <p>$</p>
           </label>
+          <button>Add New Item</button>
         </div>
         <div class="sumbit">
-          <button>Discard</button>
+          <button class="bun">Discard</button>
           <div>
-            <button>Save as Draft</button>
-            <button>Save and Send</button>
+            <button class="bun1">Save as Draft</button>
+            <button class="bun2">Save and Send</button>
           </div>
         </div>
       </form>
@@ -102,15 +103,18 @@
   <style scoped> 
     .new{
       position: fixed;
-      left: 0;
+      left: 0%;
       bottom: 0;
       width: 80%;
       background: #141625;
-      height: 100%;
+      height: calc(100% - 4.5em);
       z-index: 100000;
       overflow-y: scroll;
       padding: 20px;
       margin: 0;
+    }
+    .style{
+      left: 0;
     }
     .new h2{
       margin-bottom: 20px;
@@ -119,7 +123,7 @@
       position: relative;
       margin: 0;
       height: 100%;
-      /* padding: 20px; */
+      padding-bottom: 20px;
       letter-spacing: 1px;
     }
     p{
@@ -187,6 +191,15 @@
       grid-column: 1/3;
       grid-row:  3;
     }
+    .label3 button{
+      grid-column: 1/3;
+      grid-row:  4;
+      border-radius: 24px;
+      background: rgba(100, 70, 220, 0.999);
+      border: none;
+      outline: none;
+      color: white;
+    }
     input{
       outline: none;
       border: none;
@@ -203,6 +216,7 @@
       justify-content: space-between;
       align-items: center;
       display: flex;
+      padding-bottom: 20px;
     }
     .sumbit > div{
       display: flex;
@@ -214,7 +228,18 @@
       padding: 14px;
       border-radius: 24px;
       font-size: 9px;
+      color: white;
     }
+    .bun {
+    background: rgba(0, 0, 0, 0.4);
+  }
+   .bun1{
+    background: rgba(244, 244, 244, 0.1);
+  }
+   .bun2{
+    background: rgba(10, 249, 20, 0.2);
+
+  }
     @media screen and (min-width: 768px) {
       .new{
         width: 760px;
@@ -288,5 +313,11 @@
       grid-row: 2;
       align-items: center;
     }
+    }
+    @media screen and (min-width: 1000px) {
+      .new{
+        height: 100%;
+        left: 4.99em;
+      }
     }
   </style> 

@@ -170,7 +170,7 @@ export default {
   .main-details{
     position: relative;
     width: 100%;
-    margin: 0;
+    margin: 4.9em 0 0;
     padding: 40px 20px 20px;
     color: #fff;
   }
@@ -189,7 +189,7 @@ export default {
     transition: .3s;
     box-shadow: 3px 3px 22px #101010 ;
   }
-   .anim{
+   .anim{ 
     top:30%;
     opacity: 1;
     z-index: 1000;
@@ -415,7 +415,7 @@ export default {
   @media screen and (min-width:768px) {
       .main-details{
         width: 748px;
-        margin: 20px auto;
+        margin: 4.9em auto 0;
       }
       .bdy{
         grid-template-columns: repeat(4, 1fr);

@@ -203,7 +203,7 @@ import NewInvoice from '../components/NewInvoice.vue';
     @media screen and (min-width:768px) {
       .inss{
         min-width: 748px;
-        margin: 20px auto;
+        margin: 4.9em auto 0;
       }
        .head{
         margin-bottom: 3em;
