@@ -14,7 +14,9 @@ export default createStore({
         count: 1,
   },
   getters: {
-  
+    // todos (state) {
+    //   return state.todo;
+    // },
     getTodos (state) {
       return state.todos
     },
@@ -27,14 +29,18 @@ export default createStore({
     getTodoById: (state) => (id) => {
       return state.todos.find(todo => todo.id === id)
     },
-    activeClass(state) {
-      return 
-    }
   },
   mutations: {
-    increment(state){
-      state.count++
-    },
+    loadStore() {
+			if(localStorage.getItem('store')) {
+        try {
+            this.replaceState(JSON.parse(localStorage.getItem('store')));
+        }
+        catch(e) {
+            console.log('Could not initialize store', e);
+        }
+			}
+		},
     ADD_NEW(state, payload){
       return state.todos = payload
     },
@@ -45,7 +51,8 @@ export default createStore({
     TOGGLE_TODO(state, payload){ 
       const index = state.todos.find(dos => dos.id === payload)
       index.status = 'paid'
-    }
+      
+    },
   }, 
   actions: {
     loadDaas(context) {
@@ -53,7 +60,6 @@ export default createStore({
     },
     toggleTodo(context,payload) {
       return context.commit('TOGGLE_TODO',payload)
-      // console.log(payload)
     },
     deleteTodo(context, payload) {
       return context.commit('DELE_TODO', payload)

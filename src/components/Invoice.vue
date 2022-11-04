@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 // import { mapGetters } from 'vuex';
 
 export default {
@@ -33,27 +34,27 @@ export default {
     pick: String
   },
   data() {
-  return {
-    classObject: {
-      active: true,
-      'text-danger': false
-    }
+  return { 
+    todos: []
   }
 },
 
   computed: {
     dones(){
+      
       if(this.pick === 'all'){
-        return this.$store.getters.getTodos
+        return this.todos
       }
-        return this.$store.getters.getTodos.filter(x => x.status === this.pick)
+        return this.todos.filter(x => x.status === this.pick)
     },
         // ...mapGetters({
         //     dones: "getTodos"
         // })
   },
   mounted() {
-
+    const store = useStore()
+      this.todos = store.getters.getTodos
+      console.log(this.todos)
   },
 }
 </script>
@@ -68,7 +69,7 @@ export default {
     background: rgba(72, 84, 159, 0.15);
     /* background: #fff;
     color: #0C0e16; */
-    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.1);
   }
   .bdy:hover{
     box-shadow:inset 1px 1px 3px rgba(250, 250, 250, 0.3);

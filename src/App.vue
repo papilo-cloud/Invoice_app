@@ -6,23 +6,46 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import Heade from './components/Heade.vue';
 
 export default {
 
     mounted() {
         this.$store.dispatch("loadDaas");
-        console.log(this.$store.getters.getTodos.filter(dos => dos.status === 'paid'));
-        console.log(this.$store.getters.getTodoById("RT3080"));
-        console.log(this.$store.getters.doneTodosCount);
-        console.log(this.$store.state.count);
-        this.$store.commit("increment");
+        // console.log(this.$store.getters.getTodos);
+        // console.log(this.$store.state.count);
+        // this.$store.commit("increment");
+      const store = useStore()
+        this.todos = store.getters.todos
+        console.log(this.todos)
+
+        // this.dele()
     },
-    methods: {
-        dele(index) {
-            this.$store.dispatch("delOdo", index);
-            console.log(index);
+    data() {
+      return {
+            todos: []
         }
+    },
+    beforeCreate() {
+      const store = useStore()
+		  store.commit('loadStore');
+	  },
+    methods: {
+      delDone(id) {
+        this.$store.dispatch("toggleTodos", id);
+        // console.log(id)
+      },
+      unDone(id){
+        this.$store.dispatch("toggle", id);
+        console.log(id)
+      },
+         
+    },
+    computed: {
+      dones(){
+        return this.$store.getters.getTodos
+      }
     },
    
     components: { Heade }
@@ -40,6 +63,7 @@ export default {
     position: relative;
     width: 100%;
     background: #141625;
+    margin: 0;
   }
   .overflow {
     overflow: hidden;
@@ -50,6 +74,7 @@ export default {
     padding: 0;
     display: grid;
   }
+
   button{
     cursor: pointer;
   }

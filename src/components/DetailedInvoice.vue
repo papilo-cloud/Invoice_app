@@ -92,7 +92,7 @@
         </div>
         <div class="total">
           <p>grand Total</p>
-          <h1>$ {{datas.total}}</h1>
+          <h2>$ {{datas.total}}</h2>
         </div>
       </div>
     </div>
@@ -134,8 +134,9 @@ export default {
       this.$router.go(-1)
     },
     deleteTodo(id) {
-            this.$store.dispatch("deleteTodo", id);
-            this.$router.push('/')
+      this.$store.dispatch("deleteTodo", id);
+      this.$router.push('/')
+      document.body.classList.remove('overflow')
     },
     toggleDelete() {
       // this.filter = !this.filter;
@@ -395,10 +396,6 @@ export default {
     position: relative;
     right: 0;
     justify-content: flex-end;
-  }
-  .dell{
-    /* transform: translateY(50%); */
-
   }
   .anim{
     top:50%;
